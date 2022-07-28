@@ -1,14 +1,26 @@
 <div align="center">
   <h1>Oily <img width="32" src="https://bun.sh/logo.svg"/></h1>
   <p>An <i>unpleasantly</i> smooth experience!</p>
-  	<span>
+  <p>
+    <a href="https://npm.im/oily">
+      <img alt="npm" src="https://img.shields.io/npm/v/oily">
+      <img alt="npm" src="https://img.shields.io/npm/dm/oily">
+    </a>
+    <a href="https://github.com/ariesclark/oily.js">
+      <img alt="GitHub issues" src="https://img.shields.io/github/issues/ariesclark/oily.js">
+      <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/ariesclark/oily.js">
+    </a>
+  </p> 
+  <span>
 		<a href="#installation">Installation</a>
 		<span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
 		<a href="#usage">Usage</a>
 		<span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
 		<a href="https://discord.gg/rj3YQQu">Discord</a>
 	</span>
+ 
 </div>
+
 <hr>
 
 
