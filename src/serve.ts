@@ -1,7 +1,7 @@
 import { Serve } from "bun";
 
 import { log } from "./log";
-import { OilyError, toOilyError } from "./error";
+import { toOilyError } from "./error";
 import { createRouter } from "./router";
 import { toOilyRequest } from "./request";
 import { MiddlewareFunction } from "./middleware";

@@ -42,7 +42,6 @@ export async function getRouteTree(options: ServeOptions, pathname?: string): Pr
 
 		if (targetStat.isDirectory()) {
 			tree.children[urlSegment] = await getRouteTree(options, targetPathname);
-
 			continue;
 		}
 
@@ -70,7 +69,10 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 
 	const resolve: Router["resolve"] = async (request) => {
 		const { pathname } = new URL(request.url);
-		const urlSegments = pathname.slice(1).split("/");
+		const urlSegments = pathname
+			.slice(1)
+			.split("/")
+			.filter((urlSegment) => !!urlSegment);
 
 		let relTree = tree;
 		for (const urlSegmentIdx in urlSegments) {
@@ -87,7 +89,7 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 
 			relTree = relTree.children[urlSegment];
 			if (lastUrlSegment) {
-				request.route = relTree.options;
+				request.route = relTree.options || relTree.children["index"].options;
 				return relTree.options;
 			}
 		}
