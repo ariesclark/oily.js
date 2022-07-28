@@ -1,0 +1,13 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "types": ["bun-types"],
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "target": "es2022",
+    "outDir": "dist",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  }
+}
