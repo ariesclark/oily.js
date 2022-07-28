@@ -1,6 +1,6 @@
 {
   "name": "oily",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "",
   "main": "dist/index.js",
   "devDependencies": {
@@ -13,6 +13,13 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ariesclark/oily.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ariesclark/oily.js/issues"
+  },
   "keywords": [
     "bun",
     "bun.js",
