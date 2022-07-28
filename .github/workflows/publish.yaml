@@ -15,7 +15,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - uses: antongolub/action-setup-bun@v1
+      - run: bun install
       - run: npm run build
       - run: npm publish
         env:
