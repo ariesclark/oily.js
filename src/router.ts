@@ -14,7 +14,8 @@ import { ServeOptions } from "./serve";
 export interface Router {
 	tree: RouteTree;
 	resolve: (request: OilyRequest) => Promise<RouteOptions | null>;
-	handle: (request: OilyRequest) => Promise<Response>;
+	fetch: (request: OilyRequest) => Promise<Response>;
+	error: (request: OilyError) => Promise<Response>;
 }
 
 export interface RouteTree {
@@ -67,7 +68,7 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 	const tree = await getRouteTree(options);
 	options.middleware ??= [NoOperationMiddleware];
 
-	async function resolve(request: OilyRequest): Promise<RouteOptions | null> {
+	const resolve: Router["resolve"] = async (request) => {
 		const { pathname } = new URL(request.url);
 		const urlSegments = pathname.slice(1).split("/");
 
@@ -92,9 +93,9 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 		}
 
 		return null;
-	}
+	};
 
-	async function handle(request: OilyRequest): Promise<Response> {
+	const fetch: Router["fetch"] = async (request) => {
 		await resolve(request);
 
 		options.middleware ??= [NoOperationMiddleware];
@@ -154,11 +155,16 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 		if (!response) OilyError.throw("No content returned");
 
 		return response;
-	}
+	};
+
+	const error: Router["error"] = async (error) => {
+		return Response.json({ error }, error.options);
+	};
 
 	return {
 		tree,
 		resolve,
-		handle
+		fetch,
+		error
 	};
 }

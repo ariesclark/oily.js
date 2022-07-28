@@ -23,11 +23,6 @@ export class OilyError extends Error {
 		throw new OilyError(message, options);
 	}
 
-	public static from(value: Errorlike): OilyError {
-		if (isOilyError(value)) return value;
-		return new OilyError(value.message);
-	}
-
 	public constructor(message: string, public options: OilyErrorOptions = {}) {
 		super(message);
 
@@ -41,4 +36,9 @@ export class OilyError extends Error {
 			status: this.options.status ?? 500
 		};
 	}
+}
+
+export function toOilyError(value: Errorlike): OilyError {
+	if (isOilyError(value)) return value;
+	return new OilyError(value.message);
 }

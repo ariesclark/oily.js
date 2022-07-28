@@ -1,7 +1,7 @@
 import { Serve } from "bun";
 
 import { log } from "./log";
-import { OilyError } from "./error";
+import { OilyError, toOilyError } from "./error";
 import { createRouter } from "./router";
 import { toOilyRequest } from "./request";
 import { MiddlewareFunction } from "./middleware";
@@ -16,11 +16,8 @@ export async function serve(options: ServeOptions) {
 
 	const server = Bun.serve({
 		...options,
-		fetch: (request) => router.handle(toOilyRequest(request)),
-		error: (value) => {
-			const error = OilyError.from(value);
-			return Response.json({ error }, error.options);
-		}
+		fetch: (request) => router.fetch(toOilyRequest(request)),
+		error: (value) => router.error(toOilyError(value))
 	});
 
 	log(`listening on ${server.hostname}`);
