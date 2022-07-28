@@ -8,6 +8,7 @@
     "outDir": "dist",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
+    "skipDefaultLibCheck": true,
     "strict": true
   }
 }
