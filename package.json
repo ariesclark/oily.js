@@ -1,16 +1,18 @@
 {
   "name": "oily",
   "version": "0.1.0",
-  "description": "An unpleasantly smooth experience!",
+  "author": "",
   "main": "dist/index.js",
-  "types": "dist/index.d.js",
+  "devDependencies": {
+    "@ariesclark/eslint-config": "^1.4.0",
+    "bun-types": "^0.1.4",
+    "eslint": "^8.20.0",
+    "typescript": "^4.7.4"
+  },
+  "description": "An unpleasantly smooth experience!",
   "files": [
     "dist"
   ],
-  "scripts": {
-    "dev": "bun ./examples/index.ts",
-    "build": "tsc"
-  },
   "keywords": [
     "bun",
     "bun.js",
@@ -19,15 +21,10 @@
     "filesystem",
     "middleware"
   ],
-  "author": "",
   "license": "MIT",
-  "devDependencies": {
-    "@ariesclark/eslint-config": "^1.4.0",
-    "bun-types": "^0.1.4",
-    "eslint": "^8.20.0",
-    "typescript": "^4.7.4"
+  "scripts": {
+    "dev": "bun ./examples/index.ts",
+    "build": "tsc"
   },
-  "dependencies": {
-    "chalk": "^5.0.1"
-  }
+  "types": "dist/index.d.js"
 }
