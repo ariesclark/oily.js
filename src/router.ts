@@ -15,7 +15,7 @@ export interface Router {
 	tree: RouteTree;
 	resolve: (request: OilyRequest) => Promise<RouteOptions | null>;
 	fetch: (request: OilyRequest) => Promise<Response>;
-	error: (request: OilyError) => Promise<Response>;
+	error: (request: OilyError) => Response;
 }
 
 export interface RouteTree {
@@ -157,7 +157,7 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 		return response;
 	};
 
-	const error: Router["error"] = async (error) => {
+	const error: Router["error"] = (error) => {
 		return Response.json({ error }, error.options);
 	};
 
