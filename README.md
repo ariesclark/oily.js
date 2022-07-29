@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Oily <img width="32" src="https://bun.sh/logo.svg"/></h1>
-  <p>A <i>blazingly</i> fast <a href="https://bun.sh">Bun.js</a> filesystem router, with</br>an unpleasantly smooth experience!</p>
+  <p>A <i>blazingly</i> fast <a href="https://bun.sh">Bun.js</a> filesystem router, with</br> an unpleasantly smooth experience!</p>
   <p>
     <a href="https://npm.im/oily">
       <img alt="npm" src="https://img.shields.io/npm/v/oily">
