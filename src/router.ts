@@ -93,8 +93,8 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 
 			relTree = relTree.children[urlSegment];
 			if (lastUrlSegment) {
-				request.route = relTree.options || relTree.children["index"].options;
-				return relTree.options;
+				request.route = relTree.options || relTree.children["index"]?.options;
+				return relTree.options ?? null;
 			}
 		}
 
