@@ -164,8 +164,8 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 			return runner(0);
 		}
 
-		const response = (await execute()) || null;
-		if (!response) OilyError.throw("No content returned");
+		const response = (await execute().catch((reason) => error(reason))) || null;
+		if (!response) OilyError.throw("No content");
 
 		return response;
 	};
