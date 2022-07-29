@@ -1,11 +1,11 @@
 <div align="center">
   <h1>Oily <img width="32" src="https://bun.sh/logo.svg"/></h1>
-  <p>An <i>unpleasantly</i> smooth experience!</p>
+  <p>A <i>blazingly</i> fast <a href="https://bun.sh">Bun.js</a> filesystem router, with</br>an unpleasantly smooth experience!</p>
   <p>
     <a href="https://npm.im/oily">
       <img alt="npm" src="https://img.shields.io/npm/v/oily">
       <img alt="npm" src="https://img.shields.io/npm/dm/oily">
-    </a>
+    </a></br>
     <a href="https://github.com/ariesclark/oily.js">
       <img alt="GitHub issues" src="https://img.shields.io/github/issues/ariesclark/oily.js">
       <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/ariesclark/oily.js">
@@ -15,6 +15,8 @@
 		<a href="#installation">Installation</a>
 		<span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
 		<a href="#usage">Usage</a>
+    <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+		<a href="/examples">Examples</a>
 		<span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
 		<a href="https://discord.gg/rj3YQQu">Discord</a>
 	</span>
@@ -25,14 +27,21 @@
 
 
 ## Installation
-Assuming you've got [Bun.js](https://bun.sh/) installed, The installation is super simple, just run the following command.
+
+
+Once you've got [Bun.js](https://bun.sh/) installed, The installation is super simple, just run the following commands.
 ```bash
+# Install Bun.js, If you haven't yet.
+curl https://bun.sh/install | bash
+
+# Use Bun's package manager to install, or you
+# can use any package manager that supports Bun.js.
 bun add oily
 ```
 
 ## Usage
 ```ts
-// file: ./index.ts
+// file: ./src/index.ts
 import { Oily } from "oily";
 
 await Oily.serve({
@@ -52,7 +61,7 @@ await Oily.serve({
 
 Routes are found, by default, within the ``./routes`` directory, next to the entrypoint.
 ```ts
-// file: ./routes/foo.ts
+// file: ./src/routes/foo.ts
 import { Oily } from "oily";
 
 export default Oily.route({
@@ -66,30 +75,4 @@ export default Oily.route({
     }
   }
 });
-```
-```bash
-curl http://localhost:3000/foo
-# { "foo": true }
-```
-
-```ts
-// file: ./routes/~bar/baz.ts
-// this is a dynamic route.
-import { Oily } from "oily";
-
-export default Oily.route({
-  methods: {
-    get: {
-      async handle({ query }) {
-        return Response.json({
-          baz: query.get("bar")
-        });
-      }
-    }
-  }
-});
-```
-```bash
-curl http://localhost:3000/hello/baz
-# { "baz": "hello" }
 ```

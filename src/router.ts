@@ -1,13 +1,15 @@
 import { readdirSync, statSync } from "node:fs";
 import * as path from "node:path";
 
-import { OilyError } from "./error";
+import { Errorlike } from "bun";
+
+import { OilyError, toOilyError } from "./error";
 import {
 	MiddlewareFunction,
 	MiddlewareFunctionResponse,
 	NoOperationMiddleware
 } from "./middleware";
-import { Method, OilyRequest } from "./request";
+import { Method, OilyRequest, toOilyRequest } from "./request";
 import { isRouteOptions, RouteOptions } from "./route";
 import { ServeOptions } from "./serve";
 
@@ -18,8 +20,8 @@ import { ServeOptions } from "./serve";
 export interface Router {
 	tree: RouteTree;
 	resolve: (request: OilyRequest) => Promise<RouteOptions | null>;
-	fetch: (request: OilyRequest) => Promise<Response>;
-	error: (request: OilyError) => Response;
+	fetch: (request: Request) => Promise<Response>;
+	error: (request: Errorlike) => Response;
 }
 
 export interface RouteTree {
@@ -105,7 +107,8 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 		return null;
 	};
 
-	const fetch: Router["fetch"] = async (request) => {
+	const fetch: Router["fetch"] = async (rawRequest) => {
+		const request = toOilyRequest(rawRequest);
 		await resolve(request);
 
 		options.middleware ??= [NoOperationMiddleware];
@@ -167,7 +170,8 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 		return response;
 	};
 
-	const error: Router["error"] = (error) => {
+	const error: Router["error"] = (value) => {
+		const error = toOilyError(value);
 		return Response.json({ error }, error.options);
 	};
 

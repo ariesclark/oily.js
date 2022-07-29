@@ -42,12 +42,25 @@ export class OilyError extends Error {
 		this.options.status ??= 500;
 	}
 
+	/**
+	 * @todo Check if we're in a production environment,
+	 * and if we are, hide the error message when
+	 * the status code is greater than 500.
+	 */
 	public toJSON(): OilyErrorJson {
 		return {
 			message: this.message,
 			status: this.options.status ?? 500
 		};
 	}
+}
+
+/**
+ * Throw an error.
+ * @see {@link OilyError}
+ */
+export function throwError(...parameters: Parameters<typeof OilyError["throw"]>): never {
+	OilyError.throw(...parameters);
 }
 
 export function toOilyError(value: Errorlike): OilyError {

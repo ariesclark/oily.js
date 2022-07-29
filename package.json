@@ -1,6 +1,6 @@
 {
   "name": "oily",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "",
   "main": "dist/index.js",
   "devDependencies": {
@@ -9,7 +9,7 @@
     "eslint": "^8.20.0",
     "typescript": "^4.7.4"
   },
-  "description": "An unpleasantly smooth experience!",
+  "description": "A blazingly fast Bun.js filesystem router, with an unpleasantly smooth experience!",
   "files": [
     "dist"
   ],

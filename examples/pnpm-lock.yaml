@@ -1,0 +1,17 @@
+lockfileVersion: 5.4
+
+specifiers:
+  bun-types: ^0.1.4
+  oily: link:..
+
+dependencies:
+  oily: link:..
+
+devDependencies:
+  bun-types: 0.1.4
+
+packages:
+
+  /bun-types/0.1.4:
+    resolution: {integrity: sha512-8nyx22INhlPT+R/1MebbAK7TX48aLQdrLTEmce3oTlne5GunoxMEtCiHOku90XKeHbxxbMkkPI2TX1m0pvlLaw==}
+    dev: true
