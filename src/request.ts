@@ -24,5 +24,15 @@ export type OilyRequest = Request & {
 
 export function toOilyRequest(request: Request): OilyRequest {
 	const { searchParams: query } = new URL(request.url);
-	return Object.assign(request.clone(), { query, route: null });
+
+	/**
+	 * @todo gonna pretend I know why this needs to be here,
+	 * the request body doesn't work in the function
+	 * handler if this line isn't here.
+	 *
+	 * some bun.js event loop/promises bug maybe??
+	 */
+	void request.json();
+
+	return Object.assign(request, { query, route: null });
 }
