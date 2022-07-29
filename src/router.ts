@@ -74,6 +74,10 @@ export async function createRouter(options: ServeOptions): Promise<Router> {
 			.split("/")
 			.filter((urlSegment) => !!urlSegment);
 
+		if (urlSegments.length === 0) {
+			urlSegments.push("index");
+		}
+
 		let relTree = tree;
 		for (const urlSegmentIdx in urlSegments) {
 			let urlSegment = urlSegments[urlSegmentIdx];
