@@ -11,6 +11,10 @@ import { Method, OilyRequest } from "./request";
 import { isRouteOptions, RouteOptions } from "./route";
 import { ServeOptions } from "./serve";
 
+/**
+ * The internal Oily.js router, handles middleware,
+ * route resolving and practically everything else.
+ */
 export interface Router {
 	tree: RouteTree;
 	resolve: (request: OilyRequest) => Promise<RouteOptions | null>;

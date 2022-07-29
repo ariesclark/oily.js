@@ -1,5 +1,8 @@
 import { Errorlike } from "bun";
 
+/**
+ * A type guard for {@link Errorlike}.
+ */
 export function isErrorlike(value: unknown): value is Errorlike {
 	return (
 		value instanceof Error ||
@@ -7,6 +10,9 @@ export function isErrorlike(value: unknown): value is Errorlike {
 	);
 }
 
+/**
+ * A type guard for {@link OilyError}.
+ */
 export function isOilyError(value: unknown): value is OilyError {
 	return value instanceof OilyError;
 }
@@ -19,6 +25,12 @@ export interface OilyErrorJson {
 }
 
 export class OilyError extends Error {
+	/**
+	 * Throw an error.
+	 *
+	 * @example
+	 * OilyError.throw("Access denied", { status: 403 })
+	 */
 	public static throw(message: string, options: OilyErrorOptions = {}): never {
 		throw new OilyError(message, options);
 	}

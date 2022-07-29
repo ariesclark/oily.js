@@ -1,9 +1,24 @@
 import { RouteOptions } from "./route";
 
-export type Method = "get" | "post";
+/**
+ * @see [MDN - Request Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+ */
+export type Method = "get" | "head" | "post" | "put" | "delete" | "options" | "patch";
 
+/**
+ * The request object, used to obtain
+ * information about the current request.
+ *
+ * @inherits {@link Request}
+ */
 export type OilyRequest = Request & {
+	/**
+	 * The current route descriptor, if available.
+	 */
 	route: RouteOptions | null;
+	/**
+	 * The request query.
+	 */
 	query: URLSearchParams;
 };
 
