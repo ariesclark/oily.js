@@ -19,7 +19,7 @@ export function isOilyError(value: unknown): value is OilyError {
 
 export type OilyErrorOptions = ResponseInit;
 
-export interface OilyErrorJson {
+export interface OilyErrorPlain {
 	message: string;
 	status: number;
 }
@@ -47,7 +47,7 @@ export class OilyError extends Error {
 	 * and if we are, hide the error message when
 	 * the status code is greater than 500.
 	 */
-	public toJSON(): OilyErrorJson {
+	public toJSON(): OilyErrorPlain {
 		return {
 			message: this.message,
 			status: this.options.status ?? 500

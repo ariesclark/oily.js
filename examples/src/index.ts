@@ -1,3 +1,3 @@
 import { Oily } from "oily";
 
-await Oily.serve();
+await Oily.serve({});

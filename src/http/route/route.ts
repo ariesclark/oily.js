@@ -1,5 +1,8 @@
-import { MiddlewareFunction } from "./middleware";
-import { Method, OilyRequest } from "./request";
+import { OilyError } from "~/error";
+import { getRelativePathname } from "~/utils/fs";
+
+import { MiddlewareFunction } from "../middleware";
+import { Method, OilyRequest } from "../request";
 
 /**
  * Route method handle function, used to
@@ -26,7 +29,7 @@ export interface MethodOptions {
 	handle: MethodHandleFunction;
 }
 
-export interface RouteOptions {
+export interface Route {
 	/**
 	 * The route pathname, automatically assigned
 	 * when the route tree is generated.
@@ -57,16 +60,28 @@ export interface RouteOptions {
 }
 
 /**
- * A type guard for {@link RouteOptions}, used to ensure
+ * A type guard for {@link Route}, used to ensure
  * a route description conforms to the proper structure.
  */
-export function isRouteOptions(value: unknown): value is RouteOptions {
+export function isRoute(value: unknown): value is Route {
 	return !!value && typeof value === "object" && "methods" in value;
 }
 
 /**
- * An identity function for {@link RouteOptions}.
+ * An assertion function for {@link Route}.
  */
-export function route<T extends RouteOptions>(options: T): T {
-	return options;
+export function assertRoute(value: unknown, pathname?: string): asserts value is Route {
+	if (!isRoute(value))
+		OilyError.throw(
+			`Route file "${
+				pathname ? getRelativePathname(pathname) : "unknown"
+			}" must export route object as default.`
+		);
+}
+
+/**
+ * An identity function for {@link Route}.
+ */
+export function route<T extends Route>(value: T): T {
+	return value;
 }
