@@ -1,9 +1,8 @@
 import { statSync } from "node:fs";
 import * as path from "node:path";
 
-import { getDirectory, getDirectoryContents } from "~/utils/fs";
-
 import { OilyRequest } from "..";
+import { getDirectory, getDirectoryContents } from "../../utils/fs";
 import { NoOperationMiddleware } from "../middleware";
 
 import { assertRoute, Route } from "./route";

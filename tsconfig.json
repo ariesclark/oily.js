@@ -6,10 +6,6 @@
     "moduleResolution": "Node",
     "target": "es2022",
     "outDir": "dist",
-    "baseUrl": "src",
-    "paths": {
-      "~/*": ["*"]
-    },
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "skipDefaultLibCheck": true,

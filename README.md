@@ -59,9 +59,9 @@ await Oily.serve({
 // now listening on port 3000.
 ```
 
-Routes are found, by default, within the ``./routes`` directory, next to the entrypoint.
+Routes are found, by default, within the ``./http/routes`` directory, next to the entrypoint.
 ```ts
-// file: ./src/routes/foo.ts
+// file: ./src/http/routes/foo.ts
 import { Oily } from "oily";
 
 export default Oily.route({

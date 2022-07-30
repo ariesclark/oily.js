@@ -1,6 +1,5 @@
-import { OilyError } from "~/error";
-import { getRelativePathname } from "~/utils/fs";
-
+import { OilyError } from "../../error";
+import { getRelativePathname } from "../../utils/fs";
 import { MiddlewareFunction } from "../middleware";
 import { Method, OilyRequest } from "../request";
 

@@ -1,6 +1,6 @@
 import { Serve } from "bun";
 
-import { OilyError, toOilyError } from "~/error";
+import { OilyError, toOilyError } from "../error";
 
 import { Method, toOilyRequest } from "./request";
 import { RouteTree } from "./route";
