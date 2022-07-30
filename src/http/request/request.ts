@@ -1,4 +1,6 @@
-import { Route } from "./route";
+import { Route } from "../route";
+
+import { Cookies, createCookies } from "./cookies";
 
 /**
  * @see [MDN - Request Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
@@ -20,6 +22,7 @@ export type OilyRequest = Request & {
 	 * The request query.
 	 */
 	query: URLSearchParams;
+	cookies: Cookies;
 };
 
 export function toOilyRequest(request: Request): OilyRequest {
@@ -37,5 +40,11 @@ export function toOilyRequest(request: Request): OilyRequest {
 	 */
 	void request.arrayBuffer();
 
-	return Object.assign(request, { query, route: null });
+	const cookies = createCookies(request);
+
+	return Object.assign(request, {
+		query,
+		cookies,
+		route: null
+	});
 }

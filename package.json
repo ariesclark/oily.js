@@ -2,24 +2,25 @@
   "name": "oily",
   "version": "0.1.11",
   "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ariesclark/oily.js.git"
+  },
   "main": "dist/index.js",
   "devDependencies": {
     "@ariesclark/eslint-config": "^1.4.0",
+    "@types/cookie": "^0.5.1",
     "bun-types": "^0.1.4",
     "eslint": "^8.20.0",
     "typescript": "^4.7.4"
+  },
+  "bugs": {
+    "url": "https://github.com/ariesclark/oily.js/issues"
   },
   "description": "A blazingly fast Bun.js filesystem router, with an unpleasantly smooth experience!",
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ariesclark/oily.js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ariesclark/oily.js/issues"
-  },
   "keywords": [
     "bun",
     "bun.js",
@@ -33,5 +34,8 @@
     "dev": "bun ./examples/index.ts",
     "build": "tsc"
   },
-  "types": "dist/index.d.js"
+  "types": "dist/index.d.js",
+  "dependencies": {
+    "cookie": "^0.5.0"
+  }
 }

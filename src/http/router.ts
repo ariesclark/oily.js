@@ -80,6 +80,10 @@ export async function createRouter(options: ServeHttpOptions): Promise<Router> {
 		const response = (await execute().catch((reason) => error.call(this, reason))) || null;
 		if (!response) OilyError.throw("No content");
 
+		request.cookies.headers.forEach((value, key) => {
+			response.headers.append(key, value);
+		});
+
 		return response;
 	};
 

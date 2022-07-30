@@ -7,7 +7,9 @@ import { Oily } from "oily";
 export default Oily.route({
 	methods: {
 		get: {
-			async handle() {
+			async handle({ cookies }) {
+				cookies.set("foo", "bar");
+				
 				return Response.json({
 					hello: "world"
 				});
