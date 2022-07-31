@@ -9,7 +9,6 @@ export default Oily.route({
 		get: {
 			async handle({ cookies }) {
 				cookies.set("foo", "bar");
-				
 				return Response.json({
 					hello: "world"
 				});

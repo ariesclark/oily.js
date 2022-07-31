@@ -7,6 +7,9 @@ import { Cookies, createCookies } from "./cookies";
  */
 export type Method = "get" | "head" | "post" | "put" | "delete" | "options" | "patch";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface RequestState {}
+
 /**
  * The request object, used to obtain
  * information about the current request.
@@ -18,6 +21,7 @@ export type OilyRequest = Request & {
 	 * The current route descriptor, if available.
 	 */
 	route: Route | null;
+	state: RequestState;
 	/**
 	 * The request query.
 	 */
@@ -45,6 +49,7 @@ export function toOilyRequest(request: Request): OilyRequest {
 	return Object.assign(request, {
 		query,
 		cookies,
+		state: {},
 		route: null
 	});
 }
