@@ -1,7 +1,7 @@
 import { parse, serialize, CookieSerializeOptions } from "cookie";
 
 export interface Cookies {
-	headers: Headers;
+	headers: Array<[key: string, value: string]>;
 
 	get: (key: string) => string;
 	set: (key: string, value: string, options?: CookieSerializeOptions) => void;
@@ -11,12 +11,12 @@ export interface Cookies {
 
 export function createCookies(request: Request): Cookies {
 	const rawValues = parse(request.headers.get("cookie") || "");
-	const headers = new Headers();
+	const headers: Cookies["headers"] = [];
 
 	const get: Cookies["get"] = (key) => rawValues[key] ?? null;
 
 	const set: Cookies["set"] = (key, value, options) => {
-		headers.append("set-cookie", serialize(key, value, options));
+		headers.push(["set-cookie", serialize(key, value, options)]);
 		rawValues[key] = value;
 	};
 

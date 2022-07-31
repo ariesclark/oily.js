@@ -80,7 +80,11 @@ export async function createRouter(options: ServeHttpOptions): Promise<Router> {
 		const response = (await execute().catch((reason) => error.call(this, reason))) || null;
 		if (!response) OilyError.throw("No content");
 
-		request.cookies.headers.forEach((value, key) => {
+		/**
+		 * @todo this doesn't actually work with multiple cookies.
+		 * @see https://github.com/oven-sh/bun/issues/294
+		 */
+		request.cookies.headers.forEach(([key, value]) => {
 			response.headers.append(key, value);
 		});
 
