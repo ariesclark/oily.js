@@ -16,7 +16,7 @@ export function createCookies(request: Request): Cookies {
 	const get: Cookies["get"] = (key) => rawValues[key] ?? null;
 
 	const set: Cookies["set"] = (key, value, options) => {
-		headers.push(["set-cookie", serialize(key, value, options)]);
+		headers.push(["set-cookie", serialize(key, value, { path: "/", sameSite: "lax", ...options })]);
 		rawValues[key] = value;
 	};
 
